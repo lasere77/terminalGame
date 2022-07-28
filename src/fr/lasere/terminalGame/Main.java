@@ -4,6 +4,7 @@ import java.util.Random;
 import java.util.Scanner;
 
 import fr.lasere.terminalGame.Player.Player;
+import fr.lasere.terminalGame.Potion.PotionEffect;
 
 public class Main {
 	
@@ -11,53 +12,56 @@ public class Main {
 	private static boolean running = true;
 	private static boolean your_turn = true;
 
-	private static Random rand = new Random();
+	private static Random random = new Random();
 	
 	public static void main(String[] args) {
 		//create player and enemy
-		Player player = new Player("lasere", 50, 10, 25);
-		Player enemy = new Player("enemy", 50, 15, 0);
-		
+		Player player = new Player("lasere", 50, 25);
+		Player enemy = new Player("enemy", 50, 0);
+
 		while (running) {
-			//set nb damage
-			int player_damage = rand.nextInt(10);
-			int enemy_damage = rand.nextInt(15);
+			//set nunbers damage
+			int player_damage = random.nextInt(10);
+			int enemy_damage = random.nextInt(15);
 			
-			//check if win
+			//check if win or lost
 			if(player.getHealth() <= 0) {
-				System.out.println("fin de la patie vous avez perdu....");
+				System.out.println("end of the game you have lose...");
 				running = false;
 			}
 			if(enemy.getHealth() <= 0) {
-				System.out.println("fin de la patie vous avez gagné!!!!!");
+				System.out.println("end of the game you have win!!!");
 				running = false;
 			}
 			
 			if(your_turn && running) {
-				System.out.println("que voulez vous faire ??? attacké = 1 ou posiont = 2 ?");
+				System.out.println("what do you want to do ? attacked = 1 or potion = 2?");
 				int choose = scan.nextInt();
 				if(choose == 1) {
 					enemy.damage(player_damage);
-					System.out.println("lénamie a eu : " + player_damage + " de  dégat");
-					System.out.println("il luis reste : " + enemy.getHealth());
+					System.out.println("the enamie had: " + player_damage + " point of damage");
+					System.out.println("he remains: " + enemy.getHealth());
 					your_turn = false;
 				}else if (choose == 2) {
-					
+					PotionEffect.potion(player);
 					your_turn = false;
 				}else {
-					System.out.println("vouttre tour a été passé ...");
+					System.out.println("your turn has passed ...");
 					your_turn = false;
 				}
+			//turn of mob
 			}else if (!your_turn && running) {
-				System.out.println("c est le tour du mob");
+				System.out.println("it's the turn of the mob");
 				player.damage(enemy_damage);
-				if(player.getHealth() < 0) {
-					player.setHealth(0);
-				}
-				System.out.println("l'énémie vous a infligier : " + enemy_damage + " de d'égat");
-				System.out.println("votre vie est de : " + player.getHealth());
+				
+
+				System.out.println("the enemy has inflicted on you: " + enemy_damage + " point of damage");
+				System.out.println("your life is: " + player.getHealth());
+				System.out.println("your shild is: " + player.getShild());
 				your_turn = true;
 			}
 		}
 	}
+	
+
 }
