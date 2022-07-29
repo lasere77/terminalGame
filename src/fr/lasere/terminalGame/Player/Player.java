@@ -6,15 +6,17 @@ public class Player {
 	private String name;
 	private int health;
 	private int shild;
+	private int potion;
 	
-	public Player(String name, int health, int shild) {
+	public Player(String name, int health, int shild, int potion) {
 		this.name = name;
 		this.health = health;
 		this.shild = shild;
+		this.potion = potion;
 	}
 
-	
-	
+
+
 	public void damage(int damage) {
 		if(this.shild > 0) {
 			this.shild -= damage;
@@ -50,5 +52,14 @@ public class Player {
 
 	public int getShild() {
 		return shild;
+	}
+
+
+
+	public int getPotion() {
+		return potion;
+	}
+	public void delPotion() {
+		this.potion -= 1;
 	}
 }
