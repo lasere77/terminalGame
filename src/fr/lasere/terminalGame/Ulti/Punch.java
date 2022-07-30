@@ -13,6 +13,6 @@ public class Punch {
 			damage = new Random().nextInt(100);
 		}
 		player.damage(damage);
-		System.out.println("the enemy has inflicted on you: " + damage + " point of damage");
+		System.out.println("you have inflicted:" + damage + " point of damage to the enemy");
 	}
 }

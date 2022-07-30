@@ -5,6 +5,7 @@ import java.util.Scanner;
 
 import fr.lasere.terminalGame.Player.Player;
 import fr.lasere.terminalGame.Potion.PotionEffect;
+import fr.lasere.terminalGame.Ulti.Mas;
 import fr.lasere.terminalGame.Ulti.Punch;
 import fr.lasere.terminalGame.Ulti.Res;
 
@@ -16,9 +17,10 @@ public class Main {
 	private static int turn = 0;
 	private static int mana = 0;
 	
-	
+	//ulti
 	private static Punch punch = new Punch();
 	private static Res res = new Res();
+	private static Mas mas = new Mas();
 
 	private static Random random = new Random();
 	
@@ -55,7 +57,7 @@ public class Main {
 					PotionEffect.potion(player);
 					your_turn = false;
 				}else if (choose == 3 && mana >= 3) {
-					System.out.println("what ult to use ? 1 = Punch 2 = Res");
+					System.out.println("what ult to use ? 1 = Punch 2 = Res or Mas = 3");
 					int chooseUlti = scan.nextInt();
 					if(chooseUlti == 1) {
 						punch.Punche(enemy);
@@ -66,7 +68,11 @@ public class Main {
 						res.Regenaret(player);
 						your_turn = false;
 						mana = 0;
-					}else if (mana < 3) {
+					}else if (chooseUlti == 3) {
+						mas.Massage(player);
+						your_turn = false;
+						mana = 0;
+					}else if (mana < 4) {
 						System.out.println("you don't have enough mana to use an Ulti");
 					}else {
 						System.out.println("your turn has passed ...");

@@ -15,7 +15,4 @@ public class Res {
 		player.addHealth(regenaret);
 		System.out.println("you restored: " + regenaret + " life point");
 	}
-	
-	
-	
 }
